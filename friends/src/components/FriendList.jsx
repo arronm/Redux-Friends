@@ -7,9 +7,15 @@ class FriendList extends Component {
     this.props.acquiringFriends();
   }
 
+  handleLogOut = () => {
+    localStorage.removeItem('authToken');
+    this.props.history.push('/login');
+  }
+
   render() { 
     return (
       <div className="FriendList">
+        <input type="button" value="Logout" onClick={this.handleLogOut}/>
         {
           this.props.asyncRequest
             ? <span> LOADING FRIENDS </span>

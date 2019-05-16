@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import Input from './Input';
 import { login } from '../../actions';
 
@@ -45,12 +44,7 @@ class LoginForm extends Component {
         <input type="submit" value="Login"/>
       </form>
     );
-
   }
 }
-
-const mapStateToProps = state => ({
-  loggedIn: state.loggedIn,
-});
  
-export default connect(mapStateToProps, { login })(LoginForm);
+export default connect(null, { login })(LoginForm);
