@@ -9,10 +9,16 @@ export const login = credentials => dispatch => {
     type: LOGIN_START,
   });
 
-  axios.post('http://localhost:5000/api/login', {
-    username: 'Lambda School',
-    password: 'i<3Lambd4',
-  });
+  axios.post('http://localhost:5000/api/login', credentials)
+    .then(({ data }) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: data.payload,
+      })
+    })
+    .catch(error => {
+      console.log('Error:', error);
+    });
 }
 
 

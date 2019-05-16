@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Input from './Input';
+import { login } from '../../actions';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class LoginForm extends Component {
   onSubmitHandler = (event) => {
     event.preventDefault();
     console.log('form submitted', this.state.username);
+    this.props.login({ ...this.state });
   }
 
   onChangeHandler = (event) => {
@@ -42,4 +45,4 @@ class LoginForm extends Component {
   }
 }
  
-export default LoginForm;
+export default connect(null, { login })(LoginForm);
