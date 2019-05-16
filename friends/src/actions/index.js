@@ -14,7 +14,8 @@ export const login = credentials => dispatch => {
       dispatch({
         type: LOGIN_SUCCESS,
         payload: data.payload,
-      })
+      });
+      localStorage.setItem('authToken', data.payload);
     })
     .catch(error => {
       console.log('Error:', error);
