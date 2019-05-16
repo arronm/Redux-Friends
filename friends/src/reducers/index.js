@@ -12,10 +12,13 @@ const rootReducer = (state = initialState, action) => {
     case LOGIN_START:
       return {
         ...state,
-        asyncRequest: LOGIN_START,
+        asyncRequest: action.type,
       };
     case ACQUIRE_FRIENDS:
-      return state;
+      return {
+        ...state,
+        asyncRequest: action.type,
+      };
     default:
       return state;
   }
