@@ -9,17 +9,21 @@ class FriendList extends Component {
 
   handleLogOut = () => {
     localStorage.removeItem('authToken');
-    this.props.history.push('/');
+    this.props.history.push('/login');
   }
 
   render() { 
     return (
       <div className="FriendList">
-        <input type="button" value="Logout" onClick={this.handleLogOut}/>
+        <input className="logout" type="button" value="Logout" onClick={this.handleLogOut}/>
         {
           this.props.asyncRequest
-            ? <span> LOADING FRIENDS </span>
-            : this.props.friends.map(friend => <div>{friend.name}</div>)
+            ? <div>...LOADING FRIENDS</div>
+            : (
+              <div className="friends">
+                {this.props.friends.map(friend => <div className="friend">{friend.name}</div>)}
+              </div>
+            )
         }
       </div>
     );

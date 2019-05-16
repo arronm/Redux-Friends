@@ -8,7 +8,7 @@ import PrivateRoute from './components/PrivateRoute';
 function App() {
   return (
     <div className="App">
-      <ul>
+      <ul className="nav">
         <li>
           <Link to="/login">Login</Link>
         </li>
