@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosWithAuth from '../config/axiosWithAuth';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -9,7 +10,7 @@ export const login = credentials => dispatch => {
     type: LOGIN_START,
   });
 
-  axios.post('http://localhost:5000/api/login', credentials)
+  return axios.post('http://localhost:5000/api/login', credentials)
     .then(({ data }) => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -23,9 +24,22 @@ export const login = credentials => dispatch => {
 }
 
 
-export const ACQUIRE_FRIENDS = 'ACQUIRE_FRIENDS';
-export const acquireFriends = () => dispatch => {
+export const ACQUIRING_FRIENDS = 'ACQUIRING_FRIENDS';
+export const FRIENDS_SUCCESS = 'FRIENDS_SUCCESS';
+export const FRIENDS_FAILURE = 'FRIENDS_FAILURE';
+export const acquiringFriends = () => dispatch => {
   dispatch({
-    type: ACQUIRE_FRIENDS,
+    type: ACQUIRING_FRIENDS,
   });
+  axiosWithAuth()
+    .get('http://localhost:5000/api/friends')
+    .then(({ data }) => {
+      dispatch({
+        type: FRIENDS_SUCCESS,
+        payload: data,
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }

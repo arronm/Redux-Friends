@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Input from './Input';
 import { login } from '../../actions';
 
@@ -14,8 +15,10 @@ class LoginForm extends Component {
 
   onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log('form submitted', this.state.username);
-    this.props.login({ ...this.state });
+    this.props.login({ ...this.state })
+      .then(() => {
+        this.props.history.push('/protected');
+      });
   }
 
   onChangeHandler = (event) => {
@@ -42,7 +45,12 @@ class LoginForm extends Component {
         <input type="submit" value="Login"/>
       </form>
     );
+
   }
 }
+
+const mapStateToProps = state => ({
+  loggedIn: state.loggedIn,
+});
  
-export default connect(null, { login })(LoginForm);
+export default connect(mapStateToProps, { login })(LoginForm);

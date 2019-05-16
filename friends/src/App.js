@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import LoginForm from './components/LoginForm';
-import FriendList from './components/FriendList/index.jsx';
+import FriendList from './components/FriendList';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {

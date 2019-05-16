@@ -1,5 +1,5 @@
 // import actions
-import { ACQUIRE_FRIENDS, LOGIN_START, LOGIN_SUCCESS } from '../actions';
+import { ACQUIRING_FRIENDS, LOGIN_START, LOGIN_SUCCESS, FRIENDS_SUCCESS } from '../actions';
 
 const initialState = {
   friends: [],
@@ -21,11 +21,17 @@ const rootReducer = (state = initialState, action) => {
         asyncRequest: false,
         loggedIn: true,
       }
-    case ACQUIRE_FRIENDS:
+    case ACQUIRING_FRIENDS:
       return {
         ...state,
         asyncRequest: action.type,
       };
+    case FRIENDS_SUCCESS:
+      return {
+        ...state,
+        asyncRequest: false,
+        friends: action.payload,
+      }
     default:
       return state;
   }
