@@ -1,5 +1,5 @@
 // import actions
-import { ACQUIRE_FRIENDS } from './actions';
+import { ACQUIRE_FRIENDS, LOGIN_START } from '../actions';
 
 const initialState = {
   friends: [],
@@ -8,7 +8,12 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
-switch (action.type) {
+  switch (action.type) {
+    case LOGIN_START:
+      return {
+        ...state,
+        asyncRequest: LOGIN_START,
+      };
     case ACQUIRE_FRIENDS:
       return state;
     default:
