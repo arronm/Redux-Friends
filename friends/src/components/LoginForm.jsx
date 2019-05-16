@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Input from './Input';
-import { login } from '../../actions';
+import { login } from '../actions';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -30,16 +29,17 @@ class LoginForm extends Component {
     const { username, password } = this.state;
     return (
       <form onSubmit={this.onSubmitHandler}>
-        <Input
-          name="username"
+        <input
+          type="text"
           value={username}
-          onChangeHandler={this.onChangeHandler}
+          onChange={this.onChangeHandler}
+          name="username"
         />
-        <Input
-          name="password"
-          value={password}
-          onChangeHandler={this.onChangeHandler}
+        <input
           type="password"
+          value={password}
+          onChange={this.onChangeHandler}
+          name="password"
         />
         <input type="submit" value="Login"/>
       </form>

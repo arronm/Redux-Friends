@@ -9,7 +9,6 @@ export const login = credentials => dispatch => {
   dispatch({
     type: LOGIN_START,
   });
-  console.log('logging in?');
 
   return axios.post('http://localhost:5000/api/login', credentials)
     .then(({ data }) => {
